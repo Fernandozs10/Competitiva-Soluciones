@@ -1,0 +1,46 @@
+#include <iostream>
+#include <map>
+#include <string>
+
+using namespace std;
+
+int main() {
+    int T; // número de casos de prueba
+    cin >> T;
+
+    while (T--) {
+        int n; // número de partidos
+        cin >> n;
+
+        map<string, int> teams; // mapeo de equipos y su cantidad de victorias
+
+        while (n--) {
+            string team1, team2; // nombres de los equipos
+            char result; // resultado del partido
+
+            cin >> team1 >> team2 >> result;
+
+            if (result == 'W') {
+                teams[team1]++; // si el equipo 1 ganó, incrementa su contador de victorias
+            } else {
+                teams[team2]++; // si el equipo 2 ganó, incrementa su contador de victorias
+            }
+        }
+
+        // Encuentra el equipo con la mayor cantidad de victorias
+        int max_wins = 0;
+        string winning_team;
+
+        for (const auto& team : teams) {
+            if (team.second > max_wins) {
+                max_wins = team.second;
+                winning_team = team.first;
+            }
+        }
+
+        // Muestra el nombre del equipo con la mayor cantidad de victorias
+        cout << winning_team << endl;
+    }
+
+    return 0;
+}
