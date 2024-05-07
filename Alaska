@@ -1,0 +1,41 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+    int n; // número de estaciones de gasolina
+    while (cin >> n && n != 0) {
+        vector<int> gas_stations(n);
+
+        // Leer las distancias a las estaciones de gasolina
+        for (int i = 0; i < n; ++i) {
+            cin >> gas_stations[i];
+        }
+
+        // Ordenar las distancias de las estaciones
+        sort(gas_stations.begin(), gas_stations.end());
+
+        // Agregar la estación de inicio y la estación final (distancia 0 y 1422)
+        gas_stations.push_back(0);
+        gas_stations.push_back(1422);
+
+        bool possible = true;
+        for (int i = 1; i <= n + 1; ++i) {
+            if (gas_stations[i] - gas_stations[i - 1] > 200) {
+                possible = false;
+                break;
+            }
+        }
+
+        // Verificar si es posible realizar el recorrido
+        if (possible) {
+            cout << "POSSIBLE" << endl;
+        } else {
+            cout << "IMPOSSIBLE" << endl;
+        }
+    }
+
+    return 0;
+}
