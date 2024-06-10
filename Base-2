@@ -1,0 +1,47 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+/*
+4
+1
+7
+-2
+0
+*/
+
+
+string convertirBaseNegativa(int n) 
+{
+    string result;
+    for (;n!=0;) 
+    {
+        int r = n%(-2);
+        n/=-2;
+        if(r<0) 
+        {
+          r+=2;
+          n+=1;
+        }
+        result=to_string(r)+result;
+    }
+  
+    if (result.empty()) 
+    {
+      result="0";
+    }
+      return result;
+}
+
+int main() {
+    int numCases;
+    cin>>numCases;
+    for(int i=0;i<numCases;i++) 
+    {
+        int num;
+        cin>>num;
+        cout<<"Case #"<< i+1 <<": "<<convertirBaseNegativa(num)<<endl;
+    }
+    return 0;
+}
